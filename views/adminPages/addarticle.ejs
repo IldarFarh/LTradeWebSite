@@ -1,0 +1,32 @@
+<form action="/admin/addarticle" method="POST" role="form">
+	<legend><%= title %></legend>
+		<div class="form-group">
+			<label for="parent" class="col-lg-4 control-label">Родительское меню</label>
+	        <div class="col-lg-8">
+	        <select class="form-control" id="parent" name="parent">
+				<% menuList.forEach(function(item) { %>
+	          	<optgroup label="<%= item.title %>">
+		          <% item.sublevels.forEach(function(element) { %>
+					<option><%= element.title %></option>
+				</optgroup>
+			  <% });  }); %>
+	        </select>
+	        </div>
+			<label for="title" class="col-lg-4 control-label">Название</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control" required id="title" placeholder="Как пасти овец" name="title">
+			</div>
+			<label for="link" class="col-lg-4 control-label">Линк</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control" required id="link" placeholder="kak-pasti-ovec" name="link">
+			</div>
+
+		</div>
+			<div class="form-group">
+		      <label for="description" class="col-lg-4 control-label">Статья</label>
+		      <div class="col-lg-8">
+		        <textarea class="form-control" rows="3" id="description" name="description"></textarea>
+		      </div>
+		    </div>		
+	<button type="submit" class="btn btn-primary">Добавить</button>
+</form>

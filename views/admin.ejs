@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><% include partials/head.ejs %></head>
+<body>
+	<% include adminPages/header.ejs %>
+	<div class="container">
+    <div class="row">
+    	<div class="col-xs-12">
+			<% if (page == 'addperson') { %>
+				<% include adminPages/addperson.ejs %>
+			<% } else if (page == 'addmenu') { %>
+				<% include adminPages/addmenu.ejs %>
+			<% } else if (page == 'editmenu') { %>
+				<% include adminPages/editmenu.ejs %>
+			<% } else if (page == 'addarticle') { %>
+				<% include adminPages/addarticle.ejs %>
+			<% } else { %>
+				<h1 class="text-center"> Admin Page </h1>
+				<p>Here will be some statistic info</p>
+			<% }; %>
+	    </div>
+    </div>
+  </div>
+	<% include partials/footer.ejs %>
+  <% include partials/jsdefaults.ejs %>
+
+<script src="/javascripts/adminscript.js"></script>
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'#description' });</script>
+</body>
+</html>

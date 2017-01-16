@@ -1,0 +1,74 @@
+<h1 class="text-center">Контакты</h1>
+<div class="container">
+	<form action="/admin/addperson" method="POST" role="form">
+		<legend>Добавить пользователя</legend>
+			<div class="form-group">
+				<label for="directory" class="col-lg-4 control-label">Подразделение</label>
+		        <div class="col-lg-8">
+		        <select class="form-control" id="directory" name="directory">
+		          	<% directoryList.forEach(function(item) { %>
+									<option><%= item.title %></option>
+				  			<% }); %>
+		        </select>
+		        </div>
+				<label for="name" class="col-lg-4 control-label">Ф.И.О.</label>
+				<div class="col-lg-8">
+					<input type="text" class="form-control" required id="name" placeholder="Иванов Иван Иванович" name="name">
+				</div>
+				<label for="phone" class="col-lg-4 control-label">Телефон</label>
+				<div class="col-lg-8">
+				<input type="text" class="form-control" required id="phone" placeholder="111" name="phone">
+				</div>
+				<label for="email" class="col-lg-4 control-label">Адрес электронной почты</label>
+				<div class="col-lg-8">
+				<input type="text" class="form-control" id="email" placeholder="me@leasing-trade.ru" name="email">
+				</div>
+				<label for="datebirth" class="col-lg-4 control-label">Дата рождения</label>
+				<div class="col-lg-8">
+				<input type="date" class="form-control" id="datebirth" placeholder="01.01.2001" name="datebirth">
+				</div>
+				<label for="post" class="col-lg-4 control-label">Должность</label>
+				<div class="col-lg-8">
+				<input type="text" class="form-control" id="post" placeholder="Начальник" name="post">
+				</div>
+				<label for="mobphone" class="col-lg-4 control-label">Мобильный телефон</label>
+				<div class="col-lg-8">
+				<input type="text" class="form-control" id="mobphone" placeholder="+7(900)123-45-67" name="mobphone">
+				</div>
+			</div>
+		<button type="submit" class="btn btn-primary">Добавить</button>
+	</form>	
+
+	<h3>Добавить подразделение</h3>
+	<form class="container" action="/admin/adddir" method="POST" role="form">
+		<div class="form-group">
+		  <label for="title" class="col-lg-4 control-label">Подразделение</label>
+		  <div class="col-lg-8">
+			  <div class="input-group">
+				<input type="text" class="form-control" required id="title" placeholder="Наименование подразделения" name="title">
+			    <span class="input-group-btn">
+			      <button class="btn btn-default" type="submit">Добавить</button>
+			    </span>
+			  </div>
+		  </div>
+		</div>
+	</form>
+
+	<h3>Подразделения</h3>
+	<ul class="list-group">
+		<% directoryList.forEach(function(item) { %>
+			<li class="list-group-item">
+				<%= item.title %> 
+				<a class="float-right" href="/admin/deldir/<%= item.id %>" title="Удалить подразделение"><i class="fa fa-trash-o"></i> Удалить</a>
+				<ul>
+				<% item.people.forEach(function(element) { %>			
+					<li>
+						<%= element.name %>
+						<a class="float-right" href="/admin/delperson/<%= element.id %>" title="Удалить контакт"><i class="fa fa-trash-o"></i> Удалить</a> 
+					</li>
+				<% }); %>	
+				</ul>				
+			</li>
+		<% }); %>
+	</ul>	
+</div>

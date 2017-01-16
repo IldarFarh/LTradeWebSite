@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><% include partials/head.ejs %></head>
+<body>
+	<% include partials/header.ejs %>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-8">
+				<% artList.forEach(function(item) { %>				
+					<h3><a href="/<%= item.parent.parent.link %>/<%= item.parent.link %>/<%= item.link %>" class="h3"><%= item.title %></a></h3>
+					<%- item.body.substring(0,(1350-150*artList.length)) %> <a href="/<%= item.parent.parent.link %>/<%= item.parent.link %>/<%= item.link %>"> Далее..</a>	
+				<% }); %>
+			</div>
+			<div class="col-xs-4">
+				<div id="react-phonebase-container">React not working</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<% include partials/footer.ejs %>
+    <% include partials/jsdefaults.ejs %>
+</body>
+</html>

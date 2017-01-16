@@ -1,0 +1,58 @@
+<h1 class="text-center">Статьи</h1>
+
+<div class="container">
+	<h3><%= title %></h3>
+	<form class="container" action="/admin/addmenu" method="POST" role="form">
+		<div class="form-group">
+			<label for="menuType" class="col-lg-4 control-label">Вид меню</label>
+	    <div class="col-lg-8">
+		    <select class="form-control" id="menuType" name="menuType">
+		      	<option>Toplevel</option>
+		      	<option>Sublevel</option>
+			</select>
+	    </div>
+			<div id="parentdiv">
+				<label for="parent" class="col-lg-4 control-label">Родитель</label>
+		    <div class="col-lg-8">
+			    <select class="form-control" id="parent" name="parent">
+			      	<% menuList.forEach(function(item) { %>
+								<option><%= item.title %></option>
+			  			<% }); %>
+			    </select>
+		    </div>
+	    </div>
+			<label for="title" class="col-lg-4 control-label">Наименование</label>
+			<div class="col-lg-8">
+				<div class="input-group">
+					<input type="text" class="form-control" required id="title" placeholder="Как пасти коров" name="title">
+					<span class="input-group-btn">
+					  <button class="btn btn-default" type="submit">Добавить</button>
+					</span>
+				</div>
+			</div>
+			<label for="link" class="col-lg-4 control-label">Ссылка</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control" id="link" placeholder="kak-pasti-korov" name="link">
+			</div>
+		</div>
+	</form>
+	<h3>Дерево меню</h3>
+	<ul class="list-group">
+		<% menuList.forEach(function(item) { %>
+			<li class="list-group-item">
+				<a href="/admin/editmenu/<%= item.id %>" title="Редактировать меню"><i class="fa fa-pencil"></i> </a>
+				<%= item.title %> 
+				<a class="float-right" href="/admin/delmenu/<%= item.id %>" title="Удалить подразделение"><i class="fa fa-trash-o"></i> Удалить</a>
+				<ul>
+				<% item.sublevels.forEach(function(element) { %>			
+					<li>
+						<a href="/admin/editmenu/<%= element.id %>" title="Редактировать меню"><i class="fa fa-pencil"></i> </a>
+						<%= element.title %>
+						<a class="float-right" href="/admin/delsubmenu/<%= element.id %>" title="Удалить контакт"><i class="fa fa-trash-o"></i> Удалить</a> 
+					</li>
+				<% }); %>	
+				</ul>				
+			</li>
+		<% }); %>
+	</ul>
+</div>
