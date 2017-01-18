@@ -85,6 +85,28 @@ io.sockets.on('connection', function (socket) {
     console.log("Connected: %s sockets connected.", connections.length);
 });
 
+import soap from 'soap';
+
+  var url = 'http://192.168.0.7/WebCab/ws/wsWebCab.1cws?wsdl';
+  var args = {'xsd1:script': 'Hello123 World'};
+  soap.createClient(url, function(err, client) {
+  	
+    client.wsdl.definitions.xmlns.soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/";
+    client.wsdl.definitions.xmlns.soapbind="http://schemas.xmlsoap.org/wsdl/soap/";
+    client.wsdl.definitions.xmlns.tns="http://localhost/WebCab";
+    client.wsdl.definitions.xmlns.wsp="http://schemas.xmlsoap.org/ws/2004/09/policy";
+    client.wsdl.definitions.xmlns.wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd";
+    client.wsdl.definitions.xmlns.xsd="http://www.w3.org/2001/XMLSchema";
+    client.wsdl.definitions.xmlns.xsd1="http://localhost/WebCab";
+    client.wsdl.definitions.xmlns.xsi="http://www.w3.org/2001/XMLSchema-instance";
+
+     if (err) console.log(err);
+      client.HelloWorld(args, function(err, result) {
+      	//if (err) console.log(err);
+          console.log(result);
+      });
+  });
+
 server.listen(config.port, config.host, () => {
   console.info('Express listening on port', config.port);
 });

@@ -1,5 +1,5 @@
 {
-  "name": "reactproj",
+  "name": "leasing-trade-site",
   "version": "1.0.0",
   "description": "LT Company Site",
   "main": "index.js",
@@ -9,13 +9,17 @@
   },
   "author": "IldarFarh",
   "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IldarFarh/LTradeWebSite.git"
+    },
   "dependencies": {
     "axios": "^0.15.3",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
-     "json-loader": "^0.5.4",
+    "json-loader": "^0.5.4",
     "mongodb": "^2.2.19",
     "mongoose": "^4.7.6",
     "node-sass-middleware": "^0.10.1",
@@ -25,7 +29,8 @@
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "soap": "~0.18.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",

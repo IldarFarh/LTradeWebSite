@@ -6,19 +6,37 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-8">
-				<% artList.forEach(function(item) { %>				
+			<div class="col-md-8 col-xs-12">
+				<% if (artList.length == 0 && typeof tlvl !== 'undefined') { %>
+					<h3><%= tlvl.title %></h3>
+					<ul>
+						<% tlvl.sublevels.forEach(function(slvl) { %>
+							<li><a href="/<%= tlvl.link %>/<%= slvl.link %>"><%= slvl.title %></a>
+								<ul>
+									<% slvl.articles.forEach(function(art) { %>
+										<li><a href="/<%= slvl.link %>/<%= art.link %>"><%= art.title %></a></li>
+									<% }); %>
+								</ul>
+							</li>
+						<% }); %>
+					</ul>
+				<% } else if (artList.length == 1) { %>
+					<p><a href="/<%= artList[0].parent.parent.link %>"><%= artList[0].parent.parent.title %></a>/<a href="/<%= artList[0].parent.parent.link %>/<%= artList[0].parent.link %>"><%= artList[0].parent.title %></a>/<%= artList[0].title %></p>				
+					<h3><%= artList[0].title %></h3>
+					<%- artList[0].body %>
+				<% } else {
+					 artList.forEach(function(item) { %>				
 					<h3><a href="/<%= item.parent.parent.link %>/<%= item.parent.link %>/<%= item.link %>" class="h3"><%= item.title %></a></h3>
-					<%- item.body.substring(0,(1350-150*artList.length)) %> <a href="/<%= item.parent.parent.link %>/<%= item.parent.link %>/<%= item.link %>"> Далее..</a>	
-				<% }); %>
+					<%- item.body.substring(0,(1050-80*artList.length)) %> <a href="/<%= item.parent.parent.link %>/<%= item.parent.link %>/<%= item.link %>"> Далее..</a>	
+				<% }); }; %>
+
+
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4 hidden-sm hidden-xs">
 				<div id="react-phonebase-container">React not working</div>
 			</div>
 		</div>
 	</div>
-
-	
 	<% include partials/footer.ejs %>
     <% include partials/jsdefaults.ejs %>
 </body>
