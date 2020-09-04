@@ -20,7 +20,7 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "json-loader": "^0.5.4",
-    "mongodb": "^2.2.19",
+    "mongodb": "^3.6.1",
     "mongoose": "^5.7.6",
     "node-sass-middleware": "^0.10.1",
     "react": "^15.3.2",
